@@ -9,10 +9,36 @@ public class DataContext : DbContext
   public DbSet<Discount> Discounts { get; set; }
   public DbSet<Customer> Customers { get; set; }
   public DbSet<CartItem> CartItems { get; set; }
+  public DbSet<Employee> Employees { get; set; }
 
   public void AddCustomer(Customer customer)
   {
     Customers.Add(customer);
+    SaveChanges();
+  }
+  public void AddDiscount(Discount discount)
+    {
+        Discounts.Add(discount);
+        SaveChanges();
+    }
+    public void DeleteDiscount(Discount discount)
+    {
+        this.Remove(discount);
+        this.SaveChanges();
+    }
+     public void EditDiscount(Discount discount)
+    {
+        var discountToUpdate = Discounts.FirstOrDefault(d => d.DiscountId == discount.DiscountId);
+        discountToUpdate.Title = discount.Title;
+        discountToUpdate.Code = discount.Code;
+        discountToUpdate.StartTime = discount.StartTime;
+        discountToUpdate.EndTime = discount.EndTime; 
+        discountToUpdate.DiscountPercent = discount.DiscountPercent;
+        SaveChanges();
+    }
+    public void AddEmployee(Employee employee)
+  {
+    Employees.Add(employee);
     SaveChanges();
   }
   public void EditCustomer(Customer customer)

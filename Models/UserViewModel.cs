@@ -6,6 +6,11 @@ public class CustomerWithPassword
     [UIHint("password"), Required]
     public string Password { get; set; }
 }
+public class EmployeeWithPassword{
+    public Employee Employee { get; set; }
+    [UIHint("password"), Required]
+    public string Password { get; set; }
+}
 
 public class LoginModel
 {
